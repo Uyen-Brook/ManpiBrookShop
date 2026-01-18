@@ -1,11 +1,11 @@
 package com.manpibrook.backend_api.entity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import com.manpibrook.backend_api.entity.enums.Role;
+import java.util.Date;
 
-import jakarta.annotation.Generated;
+import com.manpibrook.backend_api.entity.enums.ERole;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,20 +18,20 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="ACCOUNT")
+@Table(name="account")
 public class Account {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	@Column(name = "account_id")
+	private long accountId;
+	@Column(name = "user_name")
 	private String userName;
 	private String password;
-	private String email;
+	@Column(name = "start_date")
+	private Date startDate;
 	@Enumerated(EnumType.STRING)
-	private Role role;
-	
-	private String urlImage;
-	private String fullName;
-	private String phoneNumber;
-	private Integer Age;
+	private ERole role;
+	@Column(name = "is_active")
 	private boolean isActive;
 }

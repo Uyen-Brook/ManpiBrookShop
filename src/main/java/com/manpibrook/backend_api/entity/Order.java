@@ -1,12 +1,9 @@
 package com.manpibrook.backend_api.entity;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.awt.Window.Type;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.manpibrook.backend_api.entity.enums.OrderStatus;
-import com.manpibrook.backend_api.entity.enums.PaymentMethod;
+import com.manpibrook.backend_api.entity.enums.EOrderStatus;
+import com.manpibrook.backend_api.entity.enums.EPaymentMethod;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,39 +13,44 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "orders")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter @Setter
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long orderId;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
-
-    private BigDecimal totalAmount;
-
-    @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
-
+    @Column(name = "payment_transaction_id")
+    private Long paymentTransactionId;
+    
+    @Column(name = "total_amount")
+    private Double totalAmount;
+    
+    @Column(name = "order_status")
+    private String orderStatus;
+    
+    @Column(name = "shipping_address")
     private String shippingAddress;
-
+    
+    @Column(name = "payment_method")
     @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod;
-
-    private String sepayTransactionId;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    private EPaymentMethod paymentMethod;
+    
+    @Column(name = "product_name")
+    private String productName; 
+    
+    @Column(name = "shipping_code")
+    private String shippingCode;
+    
+    @Column(name = "shipping_carrier")
+    private String shippingCarrier;
+    
+    @Column(name = "shipping_status")
+    @Enumerated(EnumType.STRING)
+    private EOrderStatus shippingStatus;
 }

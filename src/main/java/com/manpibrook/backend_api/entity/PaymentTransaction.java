@@ -1,5 +1,7 @@
 package com.manpibrook.backend_api.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,22 +12,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order_items")
+@Table(name = "payment_transactions")
 @Getter @Setter
-public class OrderItem {
+public class PaymentTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long order_item_id;
+    @Column(name = "payment_transaction_id")
+    private Long paymentTransactionId;
 
-    @Column(name = "order_id")
-    private Long orderId;
-
-    @Column(name = "product_variant_id")
-    private Long productVariantId;
-
-    private Integer quantity;
-    private String productName;
-    
-    @Column(name = "promotion_id")
-    private Long promotionId;
+    private Double amount;
+    private String content;
+    @Column(name = "transfer_time")
+    private LocalDateTime transferTime;
 }

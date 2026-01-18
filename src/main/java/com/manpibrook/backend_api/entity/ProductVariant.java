@@ -1,37 +1,36 @@
 package com.manpibrook.backend_api.entity;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import tools.jackson.databind.JsonNode;
 
 @Entity
 @Table(name = "product_variants")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Getter @Setter
 public class ProductVariant {
-
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "product_id", nullable = false)
+	 @Column(name = "product_variant_id")
+    private Long productVariantId;
+
+    @Column(name = "product_id")
     private Long productId;
-    private String color;
-    private Integer ram;
-    private Integer storage;
-    private BigDecimal price;
-    private Integer stockQuantity;
-    @Column(unique = true)
-    //ma kho
+
+    private Double price;
     private String sku;
+    @Column(name = "stock_quanlity")
+    private Integer stockQuantity;
+    private JsonNode attribute;
+    
+    @Column(name = "image_list", columnDefinition = "TEXT")
+    private JsonNode imageList;
+
+    @Column(name = "promotion_id")
+    private Long promotionId;
 }
