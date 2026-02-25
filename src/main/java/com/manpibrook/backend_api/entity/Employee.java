@@ -21,18 +21,16 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class Employee extends Person {
-
-    @Column(length = 100)
     private String position;
-
-    @Column(length = 100)
+    
     private String department;
+    
     @Column(name = "date_of_birth")
     private Date dob;
+    
     @Column(name = "identity_number",unique = true, length = 20)
     private String identityNumber;
 
-    @Column(precision = 15, scale = 2)
     private Double salary;
 
     @Column(name = "join_date")

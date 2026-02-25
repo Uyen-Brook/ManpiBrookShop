@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum ERole {
 	ADMIN("Quản trị viên"),
 	STAFF("Nhân viên"),
-	CUSTOMMER("khách hàng");
+	CUSTOMER("khách hàng");
 	private final String description;
 	ERole(String description) {
 		this.description = description;

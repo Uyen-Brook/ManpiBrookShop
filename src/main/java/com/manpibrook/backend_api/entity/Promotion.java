@@ -31,5 +31,4 @@ public class Promotion {
     private Long giftProductId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-
 }

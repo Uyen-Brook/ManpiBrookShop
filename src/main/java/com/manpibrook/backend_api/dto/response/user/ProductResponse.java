@@ -1,4 +1,4 @@
-package com.manpibrook.backend_api.dto.response;
+package com.manpibrook.backend_api.dto.response.user;
 
 import lombok.Data;
 

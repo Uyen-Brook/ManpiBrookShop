@@ -1,42 +1,34 @@
 package com.manpibrook.backend_api.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
+@Converter
+public class JsonMapConverter implements AttributeConverter<Map<String, Object>, String> {
 
-@Slf4j
-@Converter(autoApply = true)
-public class JsonNodeConverter implements AttributeConverter<JsonNode, String> {
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(JsonNode jsonNode) {
-        if (jsonNode == null) {
-            return null;
-        }
-
-        return jsonNode.toPrettyString();
-    }
-
-    @Override
-    public JsonNode convertToEntityAttribute(String jsonNodeString) {
-        if (!StringUtils.hasLength(jsonNodeString)) {
-            log.warn("jsonNodeString input is empty, returning null");
-            return null;
-        }
-
-        ObjectMapper mapper = new ObjectMapper();
+    public String convertToDatabaseColumn(Map<String, Object> attribute) {
+        if (attribute == null) return null;
         try {
-            return mapper.readTree(jsonNodeString);
-        } catch (JsonProcessingException e) {
-            log.error("Error parsing jsonNodeString", e);
+            return mapper.writeValueAsString(attribute);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error converting Map to JSON", e);
         }
-
-        return null;
     }
 
+    @Override
+    public Map<String, Object> convertToEntityAttribute(String dbData) {
+        if (dbData == null) return null;
+        try {
+            return mapper.readValue(dbData, new TypeReference<>() {});
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error converting JSON to Map", e);
+        }
+    }
 }

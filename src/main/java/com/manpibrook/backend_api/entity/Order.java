@@ -1,6 +1,6 @@
 package com.manpibrook.backend_api.entity;
 
-import java.awt.Window.Type;
+import java.math.BigDecimal;
 
 import com.manpibrook.backend_api.entity.enums.EOrderStatus;
 import com.manpibrook.backend_api.entity.enums.EPaymentMethod;
@@ -29,7 +29,7 @@ public class Order {
     private Long paymentTransactionId;
     
     @Column(name = "total_amount")
-    private Double totalAmount;
+    private BigDecimal totalAmount;
     
     @Column(name = "order_status")
     private String orderStatus;
@@ -53,4 +53,6 @@ public class Order {
     @Column(name = "shipping_status")
     @Enumerated(EnumType.STRING)
     private EOrderStatus shippingStatus;
+    
+    
 }

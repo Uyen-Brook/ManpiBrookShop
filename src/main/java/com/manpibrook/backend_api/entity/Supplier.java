@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,22 +25,23 @@ import lombok.experimental.Accessors;
 @Entity
 @Table(name = "supplier")
 public class Supplier{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="supplier_id")
+    private int supplierId;
     @Column(name = "display_name", nullable = false)
     private String displayName;
-
     @Column(name = "code", nullable = false, unique = true)
     private String code;
-
     @Column(name = "contact_fullname")
     private String contactFullname;
-
     @Column(name = "contact_email")
     private String contactEmail;
     @Column(name = "contact_phone")
     private String contactPhone;
     @Column(name = "company_name")
     private String companyName;
-    @Column(name = "tax_code")
+    @Column(name = "tax_code", unique = true)
     private String taxCode;
     @Column(name = "email")
     private String email;

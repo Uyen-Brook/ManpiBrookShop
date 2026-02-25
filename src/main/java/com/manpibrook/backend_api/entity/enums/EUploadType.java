@@ -1,17 +1,19 @@
 package com.manpibrook.backend_api.entity.enums;
 
 public enum EUploadType {
-	BRAND("brands"),
-    PROFILE("profiles"),
-    LAPTOP("laptops");
+    PROFILE("profiles", "PRFL"),
+    LAPTOP("laptops", "LTP"),
+    BRAND("brands", "BRD"),
+    BANNER("banners", "BNR");
 
     private final String folder;
+    private final String prefix;
 
-    EUploadType(String folder) {
+    EUploadType(String folder, String prefix) {
         this.folder = folder;
+        this.prefix = prefix;
     }
 
-    public String getFolder() {
-        return folder;
-    }
+    public String getFolder() { return folder; }
+    public String getPrefix() { return prefix; }
 }

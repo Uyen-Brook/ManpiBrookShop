@@ -22,14 +22,11 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Customer extends Person {
 
-    @Column(columnDefinition = "TEXT")
-    private String address;
-
     @Column(nullable = false)
     private int points = 0;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "member_ship_level")
     private EMembershipLevel membershipLevel = EMembershipLevel.BRONZE;
 
     public void addPoints(int amount) {

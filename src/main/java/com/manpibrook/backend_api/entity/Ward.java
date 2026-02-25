@@ -1,28 +1,62 @@
-package com.manpibrook.backend_api.entity.address;
+package com.manpibrook.backend_api.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Ward", schema = "dbo")
+@Table(name = "wards")
 @Getter @Setter
 public class Ward {
     @Id
+    @Column(length = 20)
     private String code;
+
+    @Column(nullable = false)
     private String name;
+
     @Column(name = "name_en")
     private String nameEn;
+
     @Column(name = "full_name")
     private String fullName;
+
     @Column(name = "full_name_en")
     private String fullNameEn;
+
     @Column(name = "code_name")
     private String codeName;
-    @Column(name = "province_code")
-    private String provinceCode;
-    
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "province_code")
+    private Province province;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "administrative_unit_id")
+    private AdministrativeUnit administrativeUnit;
 }
+//@Entity
+//@Table(name = "Wards", schema = "dbo")
+//@Getter @Setter
+//public class Ward {
+//    @Id
+//    private String code;
+//    private String name;
+//    @Column(name = "name_en")
+//    private String nameEn;
+//    @Column(name = "full_name")
+//    private String fullName;
+//    @Column(name = "full_name_en")
+//    private String fullNameEn;
+//    @Column(name = "code_name")
+//    private String codeName;
+//    @Column(name = "province_code")
+//    private String provinceCode;
+//    
+//}
