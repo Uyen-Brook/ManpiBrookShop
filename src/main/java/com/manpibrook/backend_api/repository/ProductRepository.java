@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	Page<Product> findByProductNameContainingIgnoreCase(String name, Pageable pageable);
 	
-	boolean existsByCategory_CategoryId(Long id);
+	boolean existsByCategory_CategoryId(Integer id);
 
 	boolean existsByBrand_BrandId(Integer id);
 

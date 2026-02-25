@@ -21,12 +21,11 @@ public class ProductRequest {
     private String thumbnail;
     
     private Map<String, Object> specification;      
-    
-    private Double averageRating = 0.0;
+   
     private BigDecimal basePrice;
-    private Long categoryId;
+    private Integer categoryId;
     private Integer brandId;
-    private Long supplierId;
-     
+    private Integer supplierId;
+    
     private List<VariantRequest> variants;
 }

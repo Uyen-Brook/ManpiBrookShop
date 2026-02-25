@@ -1,8 +1,5 @@
 package com.manpibrook.backend_api.entity;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +17,7 @@ public class PromotionItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long Id;
-	
 	private int quanlity;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_variant_id", nullable = false)
 	private ProductVariant productVariant;
