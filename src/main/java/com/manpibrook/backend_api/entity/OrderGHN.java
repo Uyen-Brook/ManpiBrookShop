@@ -1,6 +1,6 @@
 package com.manpibrook.backend_api.entity;
 
-import java.awt.Window.Type;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,21 +23,21 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "order_ghn")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class OrderGHN {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_ghn_id")
     private Long orderGhnId;
 
-//    @Column(name = "order_code", unique = true) // Mã đơn hàng nội bộ hoặc mã GHN trả về
-//    private String orderCode;
-     
-    @Column(name = "shipping_order_code") // Mã vận đơn của GHN (VD: ED12345678)
+    @Column(name = "shipping_order_code")
     private String shippingOrderCode;
 
-    // --- Thông tin người nhận ---
+    // ================= THÔNG TIN NGƯỜI NHẬN =================
+
     @Column(name = "to_name", nullable = false)
     private String toName;
 
@@ -47,38 +47,49 @@ public class OrderGHN {
     @Column(name = "to_address", nullable = false)
     private String toAddress;
 
-    @Column(name = "to_ward_code") // Mã xã/phường của GHN
+    @Column(name = "to_ward_code")
     private String toWardCode;
 
-    @Column(name = "to_province_code") // Mã quận/huyện của GHN
+    @Column(name = "to_province_code")
     private Integer toProvinceCode;
 
-    // --- Thông tin kiện hàng ---
-    private Integer weight; // Khối lượng (gram)
-    private Integer length; // Chiều dài (cm)
-    private Integer width;  // Chiều rộng (cm)
-    private Integer height; // Chiều cao (cm)
+    // ================= THÔNG TIN KIỆN HÀNG =================
 
-    // --- Tài chính & Trạng thái ---
-    @Column(name = "cod_amount")
-    private Double codAmount; // Tiền thu hộ
+    private Integer weight;
+    private Integer length;
+    private Integer width;
+    private Integer height;
 
-    @Column(name = "shipping_fee")
-    private Double shippingFee; // Phí ship trả cho GHN
+    // ================= TÀI CHÍNH =================
 
-    @Column(name = "status")
+    @Column(name = "cod_amount", precision = 15, scale = 2)
+    private BigDecimal codAmount;   // đổi từ Double → BigDecimal
+
+    @Column(name = "shipping_fee", precision = 15, scale = 2)
+    private BigDecimal shippingFee; // đổi từ Double → BigDecimal
+
+    // ================= TRẠNG THÁI =================
+
     @Enumerated(EnumType.STRING)
-    private EOrderStatus status; // Trạng thái GHN (ready_to_pick, delivering, delivered,...)
-   
+    @Column(name = "status", nullable = false)
+    private EOrderStatus status;
+
+    // ================= QUAN HỆ =================
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
 
+    @OneToMany(mappedBy = "orderGhn", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PaymentTransaction> paymentTransactions; // thêm để truy xuất lịch sử
+
+    // ================= KHÁC =================
+
     @Column(name = "required_note")
-    private String requiredNote; // Ghi chú xem hàng (CHOTXEMHANG, CHOXEMHANGKHONGTHU, KHONGCHOXEMHANG)
-    
-    @Column(name = "create_at")
-    private LocalDateTime creatAt;
-    
-    @Column(name = "update_at")
-    private LocalDateTime updateAt;
+    private String requiredNote;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

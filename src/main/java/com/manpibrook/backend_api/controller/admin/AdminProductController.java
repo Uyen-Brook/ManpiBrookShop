@@ -2,7 +2,6 @@ package com.manpibrook.backend_api.controller.admin;
 
 import org.springframework.data.domain.Page;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
 import com.manpibrook.backend_api.dto.request.admin.ProductRequest;
 import com.manpibrook.backend_api.dto.request.admin.ProductVariantRequest;
 import com.manpibrook.backend_api.dto.response.admin.ProductResponse;
@@ -36,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminProductController {
     private final ProductService productService;
+    
     // ================= GET ALL (Pagination) =================
     @GetMapping
     public ResponseEntity<Page<ProductResponse>> getAll(
@@ -68,7 +66,7 @@ public class AdminProductController {
                 productService.getProductsByName(name, page, size, sortBy, sortDir)
         );
     }
-
+    
     // ================= CREATE PRODUCT =================
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponse> createProduct(

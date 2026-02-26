@@ -1,5 +1,8 @@
 package com.manpibrook.backend_api.entity;
 
+import java.math.BigDecimal;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,4 +28,10 @@ public class PromotionItem {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "promotion_id", nullable = false) 
 	private Promotion promotion;
+	
+	@Column(name = "is_gift")
+	private Boolean isGift = false;
+
+	@Column(name = "original_price")
+	private BigDecimal originalPrice;
 }
