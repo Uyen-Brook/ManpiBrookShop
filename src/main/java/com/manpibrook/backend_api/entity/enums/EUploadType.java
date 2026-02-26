@@ -4,6 +4,7 @@ public enum EUploadType {
     PROFILE("profiles", "PRFL"),
     LAPTOP("laptops", "LTP"),
     BRAND("brands", "BRD"),
+    PRODUCT("products","PRT"),
     BANNER("banners", "BNR");
 
     private final String folder;

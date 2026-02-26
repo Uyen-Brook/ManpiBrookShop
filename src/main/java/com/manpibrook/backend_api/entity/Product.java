@@ -1,5 +1,6 @@
 package com.manpibrook.backend_api.entity;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,11 +67,18 @@ public class Product {
     private Supplier supplier;
 
     // Một sản phẩm có nhiều biến thể
+  
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductVariant> variants;
+    private List<ProductVariant> variants = new ArrayList<>();
 
-    
-    public void addVariant(List<ProductVariant> variants2) {
-    	this.variants =variants2; // Rất quan trọng: Gán SP cha cho biến thể
+    public void addVariant(ProductVariant variant) {
+        variant.setProduct(this);
+        this.variants.add(variant);
     }
+
+    public void removeVariant(ProductVariant variant) {
+        variant.setProduct(null);
+        this.variants.remove(variant);
+    }
+    
 }
