@@ -2,6 +2,8 @@ package com.manpibrook.backend_api.dto.request.user;
 
 import java.util.List;
 
+import com.manpibrook.backend_api.entity.enums.EPaymentMethod;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -23,6 +25,10 @@ public class CheckoutRequest {
 
     private String toWardCode;
     private Integer toProvinceCode;
+
+    // Phương thức thanh toán: COD / BANK_TRANSFER (VNPAY)
+    @NotNull
+    private EPaymentMethod paymentMethod;
 
     // Các item được chọn từ giỏ hàng
     @NotEmpty

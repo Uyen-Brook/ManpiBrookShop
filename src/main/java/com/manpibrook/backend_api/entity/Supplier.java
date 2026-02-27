@@ -29,34 +29,52 @@ public class Supplier{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="supplier_id")
     private int supplierId;
+	
     @Column(name = "display_name", nullable = false)
     private String displayName;
+    
     @Column(name = "code", nullable = false, unique = true)
     private String code;
+    
     @Column(name = "contact_fullname")
     private String contactFullname;
+    
     @Column(name = "contact_email")
     private String contactEmail;
+    
     @Column(name = "contact_phone")
     private String contactPhone;
+    
     @Column(name = "company_name")
     private String companyName;
+    
     @Column(name = "tax_code", unique = true)
     private String taxCode;
+    
     @Column(name = "email")
     private String email;
+    
     @Column(name = "phone")
     private String phone;
+    
     @Column(name = "fax")
     private String fax;
+    
     @Column(name = "website")
     private String website;
-    private String adressUrl;
+ // Sửa lại cho đúng chính tả và mapping rõ ràng
+    @Column(name = "address_url")
+    private String addressUrl; 
+    
+    @Column(name = "address")
     private String address;
+    
     @Column(name = "description")
     private String description;
+    
     @Column(name = "note")
     private String note;
+    
     @Column(name = "status", nullable = false, columnDefinition = "TINYINT")
     private Integer status;
    

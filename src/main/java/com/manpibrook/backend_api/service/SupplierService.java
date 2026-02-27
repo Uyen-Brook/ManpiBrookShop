@@ -64,7 +64,7 @@ public class SupplierService {
         if (r.getPhone() != null) s.setPhone(r.getPhone());
         if (r.getFax() != null) s.setFax(r.getFax());
         if (r.getWebsite() != null) s.setWebsite(r.getWebsite());
-        if (r.getAdressUrl() != null) s.setAdressUrl(r.getAdressUrl());
+        if (r.getAdressUrl() != null) s.setAddressUrl(r.getAdressUrl());
         if (r.getAddress() != null) s.setAddress(r.getAddress());
         if (r.getDescription() != null) s.setDescription(r.getDescription());
         if (r.getNote() != null) s.setNote(r.getNote());
@@ -82,7 +82,7 @@ public class SupplierService {
         if (r.getPhone() != null) s.setPhone(r.getPhone());
         if (r.getFax() != null) s.setFax(r.getFax());
         if (r.getWebsite() != null) s.setWebsite(r.getWebsite());
-        if (r.getAdressUrl() != null) s.setAdressUrl(r.getAdressUrl());
+        if (r.getAdressUrl() != null) s.setAddressUrl(r.getAdressUrl());
         if (r.getAddress() != null) s.setAddress(r.getAddress());
         if (r.getDescription() != null) s.setDescription(r.getDescription());
         if (r.getNote() != null) s.setNote(r.getNote());
@@ -103,7 +103,7 @@ public class SupplierService {
         res.setPhone(s.getPhone());
         res.setFax(s.getFax());
         res.setWebsite(s.getWebsite());
-        res.setAdressUrl(s.getAdressUrl());
+        res.setAdressUrl(s.getAddressUrl());
         res.setAddress(s.getAddress());
         res.setDescription(s.getDescription());
         res.setNote(s.getNote());

@@ -39,8 +39,8 @@ public class PaymentTransaction {
 
     // ================= GIAO DỊCH =================
 
-    @Column(name = "txn_ref", nullable = false, unique = true, length = 50)
-    private String txnRef;   // mã giao dịch hệ thống (gửi sang VNPAY)
+//    @Column(name = "txn_ref", nullable = false, unique = true, length = 50)
+//    private String txnRef;   // mã giao dịch hệ thống (gửi sang VNPAY)
 
     @Column(name = "bank_txn_id", unique = true, length = 50)
     private String bankTxnId; // vnp_TransactionNo do VNPAY trả về
@@ -63,7 +63,7 @@ public class PaymentTransaction {
 
     // ================= QR CODE =================
 
-    @Column(name = "qr_code_url", length = 500)
+    @Column(name = "qr_code_url", length = 2000)
     private String qrCodeUrl;
 
     // ================= AUDIT =================

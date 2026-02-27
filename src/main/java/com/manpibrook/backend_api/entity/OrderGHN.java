@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.manpibrook.backend_api.entity.enums.EOrderStatus;
+import com.manpibrook.backend_api.entity.enums.EPaymentMethod;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -68,11 +69,15 @@ public class OrderGHN {
     @Column(name = "shipping_fee", precision = 15, scale = 2)
     private BigDecimal shippingFee; // đổi từ Double → BigDecimal
 
-    // ================= TRẠNG THÁI =================
+    // ================= TRẠNG THÁI / THANH TOÁN =================
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private EOrderStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method")
+    private EPaymentMethod paymentMethod;
 
     // ================= QUAN HỆ =================
 
